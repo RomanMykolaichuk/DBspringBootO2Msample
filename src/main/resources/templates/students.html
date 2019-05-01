@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html >
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body xmlns:th="http://www.thymeleaf.org">
+         
+        <h1><a href="/">Home</a></h1>
+        <div th:switch="${students}">
+    <h2 th:case="null">No students yet!</h2>
+        <div th:case="*">
+            <h2>Students</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Name</th>
+                        <th>Group</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each="student : ${students}">
+                    <td th:text="${student.id}"></td>
+                    <td th:text="${student.name}"></td>
+                    <td th:text="${student.group.name}"></td>
+                    <td><a th:href="@{/editstudent/{id}(id=${student.id})}">Edit</a></td>
+                    <td><a th:href="@{/deletestudent/{id}(id=${student.id})}">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>      
+    <p><a href="/addstudent">Add a new student</a></p>
+</div>
+    </body>
+</html>

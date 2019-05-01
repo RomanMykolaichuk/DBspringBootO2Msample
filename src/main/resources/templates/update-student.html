@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form action="#" th:action="@{/updatestudent/{id}(id=${student.id})}" th:object="${student}" method="post">
+            <label for="name">Name</label>
+            <input type="text" th:field="*{name}" id="name" placeholder="Name">
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            <label for="group">Group</label>
+
+            <select th:field="*{group}" id="group" placeholder="Group">
+                <option th:each="gr : ${groupsList}" 
+                        th:value="${gr.id}" 
+                        th:text="${gr.name}">${gr.name}</option>
+            </select>
+            
+            <span th:if="${#fields.hasErrors('group')}" th:errors="*{group}"></span>
+            <input type="submit" value="Update Student">   
+        </form>
+    </body>
+</html>

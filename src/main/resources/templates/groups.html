@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html >
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body xmlns:th="http://www.thymeleaf.org">
+        <h1><a href="/">Home</a></h1>
+
+        <div th:switch="${groups}">
+            <h2 th:case="null">No groups yet!</h2>
+            <div th:case="*">
+                <h2>Groups</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Name</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="group : ${groups}">
+                            <td th:text="${group.id}"></td>
+                            <td th:text="${group.name}"></td>
+                            <td><a th:href="@{/edit/{id}(id=${group.id})}">Edit</a></td>
+                            <td><a th:href="@{/delete/{id}(id=${group.id})}">Delete</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>      
+            <p><a href="/addgroup">Add a new group</a></p>
+        </div>
+    </body>
+</html>
